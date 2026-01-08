@@ -1,0 +1,903 @@
+@charset "UTF-8";
+
+/*
+   css Copyright © 2005-2012 Karelia Software. All rights reserved.
+   css released under Creative Commons License  - http://creativecommons.org/licenses/by-sa/2.5/
+   All associated graphics belong to their respective owners and are licensed separately.
+*/
+
+/* IE7 hacks */
+
+*:first-child+html .gridItem img {
+	position:relative;
+	top:0px;
+}
+
+*:first-child+html .gridItem h3 {
+	position:relative;
+	top:0px;
+}
+
+/* Navigation arrows */
+div.text-navigation { text-align:center; margin-bottom:1em;}
+div.text-navigation div { display:inline; margin:0px 0.5em; }
+.collection-navigation .disabled-navigation { text-indent:-5000px; }
+
+/* 2.0 wrap compatibility. 2.0-compatible designs can further adjust these if they need */
+.wide { display:block; }
+
+.narrow.left {   /* Some designs won't respect without !important */
+    float:left!important;
+    clear:left!important;
+}
+.narrow.right {
+    float:right!important;
+    clear:right!important;
+}
+
+.wide.left   .graphic, img.wide.left,   .wide.left video,   .wide.left audio   { display:block; margin-left:0px; margin-right:auto; }
+.wide.center .graphic, img.wide.center, .wide.center video, .wide.center audio { display:block; margin-left:auto; margin-right:auto; }
+.wide.right  .graphic, img.wide.right,  .wide.right video,  .wide.right audio  { display:block; margin-left:auto; margin-right:0px; }
+
+
+.ImageElement.left, .AudioElement.left { text-align:left; }
+.ImageElement.center, .AudioElement.center { text-align:center; }
+.ImageElement.right, .AudioElement.right { text-align:right; }
+
+/* Captions should align themselves with the graphic */
+.graphic-container.left .caption { text-align:left; }
+.graphic-container.center .caption { text-align:center; }
+.graphic-container.right .caption { text-align:right; }
+
+/* Inline iframes need to display as a block to layout right */
+.graphic iframe { display:block; }
+
+/* Pagelet photo grids should be generally be auto width (some 1.x designs hardcoded an exact width) */
+.pagelet .photogrid-index { width:auto; }
+
+/* For content like amazon which forces white background. Design SHOULD set color for A tag and text color. */
+.whiteBackground
+{
+	background-color:white;
+}
+
+.article-info
+{
+	margin-bottom:1em;
+}
+
+/* Firefox reduce dotted lines on links */
+.photo-navigation a:focus, .replaced a:focus {overflow:hidden;}
+
+/* Disqus correction to prevent overflow scroll bars in some designs */
+#dsq-content { overflow:hidden; }
+#dsq-content .dsq-auth-header { width: auto!important; }
+#dsq-content .dsq-by { margin: 4px 6px 0px 0px; }
+#dsq-content .dsq-by a, #dsq-content .dsq-by a:hover { border: 0px none; }
+#dsq-content h3 { margin:0px; }
+
+/* Site menus. Don't wrap the top level items, and wrap sub-menu items normaly. */
+#sitemenu-content ul li span.in { white-space:nowrap;}
+* html #sitemenu-content ul li span.in {white-space: normal}
+*:first-child+html #sitemenu-content ul li span.in {white-space: normal}
+#sitemenu-content ul ul li span.in {white-space: normal}
+#sitemenu-content span.in { position: relative; }
+
+body { word-wrap:break-word; }
+
+/* Make sure scaled-down images look good in IE */
+img { -ms-interpolation-mode: bicubic; }
+
+.HTMLElement { overflow:hidden; }
+
+.photogrid-index-bottom { clear:left; }
+
+/* MODIFIED, BASED ON THE FOLLOWING BASE CSS AND DEFAULT THEME
+*/
+/*
+ * jQuery Nivo Slider v3.2
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+ 
+/* The Nivo Slider styles */
+.nivoSlider {
+	position:relative;
+	width:100%;
+	height:auto;
+	overflow: hidden;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	max-width: none;
+}
+.nivo-main-image {
+	display: block !important;
+	position: relative !important; 
+	width: 100% !important;
+}
+
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0;
+	margin:0;
+	z-index:6;
+	display:none;
+	background:white; 
+	filter:alpha(opacity=0); 
+	opacity:0;
+}
+/* The slices and boxes in the Slider */
+.nivo-slice {
+	display:block;
+	position:absolute;
+	z-index:5;
+	height:100%;
+	top:0;
+}
+.nivo-box {
+	display:block;
+	position:absolute;
+	z-index:5;
+	overflow:hidden;
+}
+.nivo-box img { display:block; }
+
+/* Caption styles */
+.nivo-caption {
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	background:#000;
+	color:#fff;
+	width:100%;
+	z-index:8;
+	padding: 5px 10px;
+	opacity: 0.8;
+	overflow: hidden;
+	display: none;
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=8);
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.nivo-caption p {
+	padding:5px;
+	margin:0;
+}
+.nivo-caption a {
+	display:inline !important;
+}
+.nivo-html-caption {
+    display:none;
+}
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+	position:absolute;
+	top:45%;
+	z-index:9;
+	cursor:pointer;
+}
+.nivo-prevNav {
+	left:0px;
+}
+.nivo-nextNav {
+	right:0px;
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav {
+	text-align:center;
+}
+.nivo-controlNav a {
+	cursor:pointer;
+}
+.nivo-controlNav a.active {
+	font-weight:bold;
+}
+
+/*
+Skin Name: Nivo Slider Default Theme
+Skin URI: http://nivo.dev7studios.com
+Description: The default skin for the Nivo Slider.
+Version: 1.3
+Author: Gilbert Pellegrom
+Author URI: http://dev7studios.com
+Supports Thumbs: true
+*/
+
+.nivoSlider {
+	position:relative;
+	background:#fff url(nivo-images/loading.gif) no-repeat 50% 50%;
+    margin-bottom:10px;
+	-webkit-box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 1px 5px 0px rgb(128,128,128);
+	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+	margin:0 !important;
+	border:none !important;
+	padding:0 !important;
+}
+.nivoSlider a {
+	border:0;
+	display:block;
+}
+
+.nivo-controlNav a {
+	margin:0 4px;
+}
+
+.nivo-dots .nivo-controlNav a {
+	display:inline-block;
+	width:16px;
+	height:16px;
+	background:url(nivo-images/bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin: 0 2px;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:30px;
+	height:30px;
+	background:url(nivo-images/arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	opacity: 0;
+	-webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi) {
+    .nivo-dots .nivo-controlNav a {
+        background:url(nivo-images/bullets@2x.png) no-repeat;
+		-moz-background-size: 16px 40px;
+		-o-background-size: 16px 40px;
+        -webkit-background-size: 16px 40px;
+		background-size: 16px 40px;
+    }
+	.nivo-directionNav a {
+		background:url(nivo-images/arrows@2x.png) no-repeat;
+		-moz-background-size: 60px 30px;
+		-o-background-size: 60px 30px;
+        -webkit-background-size: 60px 30px;
+		background-size: 60px 30px;
+	}
+}
+
+.nivoSlider:hover .nivo-directionNav a { opacity: 1; }
+
+a.nivo-nextNav {
+	background-position:-30px 0;
+	right:15px;
+}
+a.nivo-prevNav {
+	left:15px;
+}
+
+.nivo-dots .nivo-controlNav a.active {
+	background-position:0 -22px;
+}
+
+.nivo-caption {
+    font-family: Helvetica, Arial, sans-serif;
+}
+.nivo-caption a {
+    color:#fff;
+    border-bottom:1px dotted #fff;
+}
+.nivo-caption a:hover {
+    color:#fff;
+}
+
+.nivo-thumbs-enabled {
+	width: 100%;
+}
+.nivo-thumbs-enabled a {
+	width: auto;
+	height: auto;
+	background: none;
+	margin-bottom: 5px;
+}
+.nivo-thumbs-enabled img {
+	padding:0 !important; margin:0; background:none !important; border:none;
+}
+
+textarea.fullWidth, input.fullWidth, select.fullWidth {
+	width:96%;
+	margin:4px 0;
+}
+textarea.fullWidth, select.fullWidth {
+	margin: 4px 1px
+}
+
+form.contactElement input.submit {
+	width:auto;
+	display:block;
+	margin-left:auto;
+	margin-right:2%;
+}
+form.contactElement th {
+	text-align:right;
+	font-weight:normal;
+	width:25%;
+}
+
+.contactError { color:red; font-weight:bold; }
+
+/* Contact Element For IE 7 */
+*:first-child+html form.contactElement input.submit {
+	padding:0px 10%;
+	min-width: 0px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+form.contactElement p {
+	text-align: left;
+}
+
+/* 
+ css Copyright © 2005-2012 Karelia Software. All rights reserved.
+ css released under Creative Commons License 
+ - http://creativecommons.org/licenses/by-sa/2.5/ 
+ All associated graphics belong to their respective owners 
+ and are licensed separately. 
+*/
+
+/* General styles */
+
+body {
+	margin: 8px;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+#index .clear {
+	clear:both;
+}
+
+.hidden {
+	display:none;
+}
+
+p {
+	padding-bottom: 10px;
+	margin: 0;
+}
+
+h5, h6 {
+	font-size: 100%;
+}
+
+a {
+	color:#000000;
+ 	font-weight:bold;
+	text-decoration: none;
+}
+
+
+html>body ul, html>body ol, html>body dd {
+	padding-left:1.7em;
+	line-height:150%;
+	margin: 0px;
+}
+
+/* Images embedded in text. "narrow" are 200 pixels wide or smaller. */
+img {
+	border: none;
+}
+
+.narrow {
+	display:block;
+	float:right;
+	clear:right;
+	margin:5px 0 5px 10px;
+}
+
+img.wide {
+	display:block;
+	clear:both;
+}
+.narrow.left{
+	margin:5px 10px 5px 0;
+}
+.narrow.right{
+	margin:5px 0 5px 10px;
+}
+
+/* Block Level formatting, more or less in descending order */
+
+body {
+	text-align:left;
+	font: 0.76em "Lucida Grande", Helvetica, Verdana, sans-serif;
+}
+	
+
+#page {
+	margin: 0 auto;
+	width: 760px;
+}
+
+#title {
+	text-align:center;
+	padding: 2em 1em 0px 1em;
+}
+
+#logo-container {
+	position:relative;
+	top: -6px;
+}
+
+h1 {
+	margin-bottom:0.4em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font: 1.2em Helvetica, Verdana, sans-serif;
+}
+
+h1 a {
+	font-weight:normal;
+	text-decoration: none;
+}
+
+#title p {
+	padding:0px;
+	margin-bottom:2px;
+}
+
+
+
+/*
+	MENU
+*/
+ 
+#sitemenu-container {
+	background: url(gears.jpeg) center top no-repeat;	
+	text-align:center;
+	padding-top:200px;	
+	position: relative;
+} 
+#sitemenu {  	
+	width:760px;
+}
+
+#sitemenu-content ul {
+	margin: 0;
+	padding: 6px 0.3em;
+}
+
+/* Keeping IE5/Win happy */
+/* Hides from IE5-mac \*/
+* html #sitemenu-container {
+	padding-top: 0px;
+	height:1%; 
+}
+
+* html #sitemenu-content ul {
+	margin-top: 200px;
+	height:1%; 
+}
+/* End hide from IE5-mac */
+
+
+#sitemenu-content li {
+	list-style-type: none;
+	display: inline;
+	padding: 0px 10px;
+	font-weight: normal;
+}
+
+#sitemenu-content a, 
+#sitemenu-content a:focus, 
+#sitemenu-content a:active {
+	font-weight:normal;
+}
+
+.currentPage span.in {
+ 	font-weight: bold;
+}
+
+#page-content {
+	margin:10px 12px;
+	min-height:100px;
+}
+
+#sidebar-container {
+	width:210px;
+	 float: left;
+}
+
+.allow-sidebar #main {
+	width:510px;
+	float:right;
+}
+
+.pagelet {
+ 	width: 200px;
+ 	margin-bottom: 12px;
+ 	overflow:hidden;
+}
+
+.pagelet p {
+ 	overflow:hidden;
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0 0 5px;
+}
+
+.pagelet h4, .pagelet h5, .pagelet h6 {
+	font-size: 1em;
+	font-weight: bold;
+	color: #666666;
+	margin: 0 0 3px;
+}
+
+.blockquote-container>.pagelet-body, .blockquote-container>.graphic {
+	position: relative;
+	padding: 10px 15px 15px 15px;
+	background: -31px 0px no-repeat;
+	background-image: url(QuotationMarks-Clockwork.png);
+}
+
+.blockquote-container .pagelet-body:after, .blockquote-container .graphic:after {
+	display: block;
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	bottom: 0px;
+	right: 0px;
+	content: "";
+	background: transparent 45px 40px no-repeat;
+	background-image: url(QuotationMarks-Clockwork.png);
+} 
+
+.blockquote-container blockquote {
+	margin: 0px;
+	z-index: 100;
+	position: relative;
+	font-style: italic;
+}
+
+.blockquote-container blockquote p {
+	margin: 0px;
+	padding: 0px;
+}
+
+h2 {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #333333;
+	margin: 0;
+	padding-bottom: 5px;
+}
+
+.article, .no-callouts {
+	clear: right;
+}
+
+.article h3 {
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+.article-info {
+	clear:right;
+}
+
+.article-thumbnail {
+	float: left;
+	margin: 5px 10px 5px 0;
+	clear:left;
+}
+
+.callout {
+	float: right;
+	width:200px;
+	margin: 0;
+	padding-left: 15px;
+}
+
+.article p {
+	margin-bottom: 3px;
+}
+
+.timestamp {
+	color: #999999;
+	font-size: 10px;
+}
+
+
+
+#page-bottom {
+	padding: 2px 2px 0px 0px;
+	text-align: right;
+	clear:both;
+}
+
+#page-bottom p {
+	padding:0px;
+}
+
+/* Other specific classes nested with an .article */
+
+.VideoElement, .ImageElement {
+	text-align: center;
+	background: transparent;
+}
+	
+.photo {
+	text-align: center;
+	background: transparent;
+	}
+
+.photo h3 {
+	}
+
+.photo img {
+	text-align: center;
+	}
+
+.caption {
+	text-align: center;
+	margin-bottom: 5px;
+	}
+
+/* Used on Photo Grid Pages ... */
+
+.photogrid-index {
+	text-align: center;
+	margin: 10px 8px;
+	overflow:hidden;
+}
+
+.gridItem {
+	float: left;
+	position:relative;
+	overflow:hidden;
+	width: 134px;
+	height: 180px;
+	margin: 5px;
+}
+
+body.allow-sidebar .gridItem {
+	margin:5px 14px;
+}
+
+.gridItem h3 {
+	font-size: 90%;
+	font-weight: normal;
+	text-align: center;
+	overflow:hidden;
+	position:absolute;
+	top:130px;
+	width:136px;
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+.gridItem img {
+	position:absolute;
+	top:0px;
+	bottom:40px;
+	right:0px;
+	left:0px;
+	margin:auto;
+}
+
+
+/* IE Hack */
+/* Hides from IE5-mac \*/
+* html .photogrid-index {
+	padding:8px 0px;
+	margin:0px;
+	width:510px;
+	overflow:hidden;
+}
+
+* html body.no-sidebar .photogrid-index {
+	width:725px;
+}
+
+* html .gridItem img {
+	position: relative;
+	top:6px;
+}
+
+* html .gridItem h3 {
+	position: relative;
+	top: -12px;
+}
+
+/* End hide from IE5-mac */
+
+
+
+
+/* Used on index summary pages */
+
+.listing-index ul {
+	list-style: none;
+}
+
+.listing-index li h3 a {
+	font-size: 12px;
+	font-weight: bold;
+	list-style: none;
+	color: #666666;
+}
+
+/* Navigation on Individual Photo Pages */
+
+.photo-navigation {
+	position:relative;
+	width: 100px;
+	height: 20px;
+	margin:0px auto 12px;
+}
+
+.photo-navigation div {
+	width:30px;
+	height:20px;
+	position: absolute;
+	text-indent: -5000em;
+	overflow:hidden;
+}
+
+.photo-navigation a {
+	display:block;
+	width:100%;
+	height:100%;
+	background: no-repeat center;
+}
+
+#previous-photo {
+	left:0px;
+}
+
+#previous-photo a {
+	background-image: url(previous.gif);
+}
+	
+#next-photo {
+	right:0px;
+}
+
+#next-photo a {
+	background-image: url(next.gif);
+}
+	
+#photo-list {
+	left:30px;
+	width: 40px;
+}
+
+#photo-list a {
+	background-image: url(list.gif);
+}
+	
+/*.text-navigation #previous-photo a{
+	background:url(previous.gif) no-repeat left;
+	padding-left:25px;
+}
+.text-navigation #next-photo a{
+	background:url(next.gif) no-repeat right;
+	padding-right:25px;
+}
+.text-navigation #photo-list a{
+	background:url(list.gif) no-repeat right 1px;
+	padding-right:35px;
+}*/
+.text-navigation #previous-photo, .text-navigation #next-photo, .text-navigation  #photo-list, .text-navigation a, .text-navigation a:hover{
+	background:none!important;
+	width:auto!important;
+}
+.article-info .timestamp, h3.index-title{ clear:left;}
+.no-page-title .photo-navigation {margin-top:23px;}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi) {
+#sitemenu-container {
+ -webkit-background-size: 800px 200px;
+    -moz-background-size: 800px 200px;
+      -o-background-size: 800px 200px;
+         background-size: 800px 200px;
+background-image: url(gears@2x.jpeg); /* not quite 2x unfortunately */
+}
+
+}
+
+body {
+	background: #002342;
+}
+#page, #sitemenu-content ul li ul, #page-content{
+	background:#ffefe0;
+}
+#page-top, #sitemenu-content ul{
+	background: #ffe0cb;
+}
+h1, h1 a {
+	color:#002342;	
+}
+#title p {
+	color:#4e3f49;
+}
+.currentPage span.in, #page-bottom a:hover, a:hover {
+	color:#4e3f49;
+}
+#page-bottom {
+	background:#002342;
+	color: #ffefe0;
+}
+#page-bottom a{
+	color: #fff7dc;
+}
+.photo-navigation div {
+	background: #ffe0cb;
+}
+.photo-navigation a:hover {
+	background: #002342;
+}
+
+.currentParent > a > span.in {
+	color:#4e3f49;
+}
+
+.callout-container, .graphic-container { clear:both; }
+
+#sitemenu-container { background-image: url("banner.jpeg"); }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi) { #sitemenu-container { background-image:url(banner_hr.jpeg); -moz-background-size:760px 200px; -o-background-size:760px 200px; -webkit-background-size:760px 200px; background-size:760px 200px; } }
+
+
+/*
+     FILE ARCHIVED ON 02:58:48 Mar 19, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 10:23:49 Jan 01, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.873
+  exclusion.robots: 0.114
+  exclusion.robots.policy: 0.101
+  esindex: 0.01
+  cdx.remote: 19.371
+  LoadShardBlock: 152.775 (3)
+  PetaboxLoader3.resolve: 199.394 (4)
+  PetaboxLoader3.datanode: 161.504 (5)
+  load_resource: 282.007 (2)
+*/
